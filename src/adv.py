@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -56,3 +57,10 @@ room["treasure"].s_to = room["narrow"]
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+newplayer = Player("none", room["outside"])
+print("Welcome adventurer. What is your name?")
+newplayer.name = input("Enter Your Name:")
+print(
+    f"{newplayer.name}, you are  {newplayer.current_room}\n Please Choose A Direction"
+)
+direction = input("Pick a Direction: [s]outh [n]orth [e]ast [w]est e[x]it")

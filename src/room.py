@@ -6,9 +6,3 @@ class Room:
     def __str__(self):
         return f"{self.name} where {self.description}."
 
-
-home = Room("home", "home sweet home")
-
-print("home described in full is " + home)
-
-print(home.description)

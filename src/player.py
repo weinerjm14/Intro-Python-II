@@ -6,7 +6,3 @@ class Player:
     def __str__(self):
         return f"{self.name} is in {self.current_room}"
 
-
-bob = Player("bob", "home")
-
-print(bob)
