@@ -63,4 +63,20 @@ newplayer.name = input("Enter Your Name:")
 print(
     f"{newplayer.name}, you are  {newplayer.current_room}\n Please Choose A Direction"
 )
+
 direction = input("Pick a Direction: [s]outh [n]orth [e]ast [w]est e[x]it")
+while not direction == "x":
+    if direction == "n":
+        newplayer.current_room.n_to = newplayer.current_room
+    elif direction == "s":
+        newplayer.current_room.s_to = newplayer.current_room
+    elif direction == "e":
+        newplayer.current_room.e_to = newplayer.current_room
+    elif direction == "w":
+        newplayer.current_room.w_to = newplayer.current_room
+    else:
+        print(f"{newplayer.name} please make select from the given choices \n")
+        direction = input("Pick a Direction: [s]outh [n]orth [e]ast [w]est e[x]it")
+
+print(f"{newplayer.name} you have arrived at {newplayer.current_room}")
+
