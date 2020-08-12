@@ -57,6 +57,8 @@ room["treasure"].s_to = room["narrow"]
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+action = "none"
+oldroom = []
 newplayer = Player("none", room["outside"])
 print("Welcome adventurer. What is your name?")
 newplayer.name = input("Enter Your Name:")
@@ -67,16 +69,24 @@ print(
 direction = input("Pick a Direction: [s]outh [n]orth [e]ast [w]est e[x]it")
 while not direction == "x":
     if direction == "n":
-        newplayer.current_room.n_to = newplayer.current_room
-    elif direction == "s":
-        newplayer.current_room.s_to = newplayer.current_room
-    elif direction == "e":
-        newplayer.current_room.e_to = newplayer.current_room
-    elif direction == "w":
-        newplayer.current_room.w_to = newplayer.current_room
-    else:
-        print(f"{newplayer.name} please make select from the given choices \n")
-        direction = input("Pick a Direction: [s]outh [n]orth [e]ast [w]est e[x]it")
+        newplayer.current_room = newplayer.current_room.n_to
 
-print(f"{newplayer.name} you have arrived at {newplayer.current_room}")
+    # elif direction == "s":
+    #     newplayer.current_room.s_to = newplayer.current_room
+    # elif direction == "e":
+    #     newplayer.current_room.e_to = newplayer.current_room
+    # elif direction == "w":
+    #     newplayer.current_room.w_to = newplayer.current_room
+    # else:
+    #     print(f"{newplayer.name} please make select from the given choices \n")
+    #     direction = input("Pick a Direction: [s]outh [n]orth [e]ast [w]est e[x]it")
+    print(
+        f"{newplayer.name} you have arrived at {newplayer.current_room}. \n please choose a direction\n"
+    )
+    # action == input(f"please choose [l]ook around or [m]ove to new room")
+    # if action == "l":
+    #     pass
+    # if action == "m":
+    #     direction = input("Pick a Direction: [s]outh [n]orth [e]ast [w]est e[x]it")
+    direction = input("Pick a Direction: [s]outh [n]orth [e]ast [w]est e[x]it")
 
