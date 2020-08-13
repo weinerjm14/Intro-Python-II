@@ -63,29 +63,39 @@ player.name = input("Enter Your Name:")
 print(f"{player.name}, you are  {player.current_room}\n Please Choose A Direction")
 
 direction = input("Pick a Direction: [s]outh [n]orth [e]ast [w]est e[x]it_game")
-
-while not direction == "x":
-    if direction in ("n", "s", "e", "w"):
-
+while True:
+    while not direction == "x":
+        wrong_way = print("There is nothing that way: Choose a different direction.")
         if direction == "n":
             if player.current_room.n_to is not None:
                 player.current_room = player.current_room.n_to
+            else:
+                print(wrong_way, direction)
         elif direction == "s":
             if player.current_room.s_to is not None:
                 player.current_room = player.current_room.s_to
+            else:
+                print(wrong_way, direction)
         elif direction == "e":
             if player.current_room.e_to is not None:
                 player.current_room = player.current_room.e_to
+            else:
+                print(wrong_way, direction)
         elif direction == "w":
             if player.current_room.w_to is not None:
                 player.current_room = player.current_room.w_to
+            else:
+                print(wrong_way, direction)
         else:
-            print("There is nothing that way: Choose a different direction.")
-    print(
-        f"{player.name}, you are  {player.current_room}\n Which Direction Would You like to go now?"
-    )
-    new_direction = input("Pick a Direction: [s]outh [n]orth [e]ast [w]est e[x]it_game")
+            print("Please choose from the given commands n", direction)
 
+        print(
+            f"{player.name}, you are  {player.current_room}\n Which Direction Would You like to go now?"
+        )
+        direction = input("Pick a Direction: [s]outh [n]orth [e]ast [w]est e[x]it_game")
+    if direction == "x":
+        print("See you next time, adventurer!")
+        break
     # if hasattr(player.current_room, f"{direction}_to"):
     #     player.current_room = getattr(player.current_room, f"{direction}_to")
     #     print(player.current_room)
