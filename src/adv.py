@@ -63,9 +63,10 @@ player.name = input("Enter Your Name:")
 print(f"{player.name}, you are  {player.current_room}\n Please Choose A Direction")
 
 direction = input("Pick a Direction: [s]outh [n]orth [e]ast [w]est e[x]it_game")
-print(direction)
+
 while not direction == "x":
     if direction in ("n", "s", "e", "w"):
+
         if direction == "n":
             if player.current_room.n_to is not None:
                 player.current_room = player.current_room.n_to
@@ -84,3 +85,15 @@ while not direction == "x":
         f"{player.name}, you are  {player.current_room}\n Which Direction Would You like to go now?"
     )
     new_direction = input("Pick a Direction: [s]outh [n]orth [e]ast [w]est e[x]it_game")
+
+    # if hasattr(player.current_room, f"{direction}_to"):
+    #     player.current_room = getattr(player.current_room, f"{direction}_to")
+    #     print(player.current_room)
+    #     if player.current_room is not None:
+    #         player.current_room = player.current_room
+    #         print(
+    #             f"{player.name}, you are  {player.current_room}\n Which Direction Would You like to go now?"
+    #         )
+    #     else:
+    #         print("There is nothing that way: Choose a different direction.")
+    # direction = input("Pick a Direction: [s]outh [n]orth [e]ast [w]est e[x]it_game")
