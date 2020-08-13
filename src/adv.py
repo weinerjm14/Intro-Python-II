@@ -57,36 +57,30 @@ room["treasure"].s_to = room["narrow"]
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
-action = "none"
-oldroom = []
-newplayer = Player("none", room["outside"])
+player = Player("none", room["outside"])
 print("Welcome adventurer. What is your name?")
-newplayer.name = input("Enter Your Name:")
-print(
-    f"{newplayer.name}, you are  {newplayer.current_room}\n Please Choose A Direction"
-)
+player.name = input("Enter Your Name:")
+print(f"{player.name}, you are  {player.current_room}\n Please Choose A Direction")
 
-direction = input("Pick a Direction: [s]outh [n]orth [e]ast [w]est e[x]it")
+direction = input("Pick a Direction: [s]outh [n]orth [e]ast [w]est e[x]it_game")
+print(direction)
 while not direction == "x":
-    if direction == "n":
-        newplayer.current_room = newplayer.current_room.n_to
-
-    # elif direction == "s":
-    #     newplayer.current_room.s_to = newplayer.current_room
-    # elif direction == "e":
-    #     newplayer.current_room.e_to = newplayer.current_room
-    # elif direction == "w":
-    #     newplayer.current_room.w_to = newplayer.current_room
-    # else:
-    #     print(f"{newplayer.name} please make select from the given choices \n")
-    #     direction = input("Pick a Direction: [s]outh [n]orth [e]ast [w]est e[x]it")
+    if direction in ("n", "s", "e", "w"):
+        if direction == "n":
+            if player.current_room.n_to is not None:
+                player.current_room = player.current_room.n_to
+        elif direction == "s":
+            if player.current_room.s_to is not None:
+                player.current_room = player.current_room.s_to
+        elif direction == "e":
+            if player.current_room.e_to is not None:
+                player.current_room = player.current_room.e_to
+        elif direction == "w":
+            if player.current_room.w_to is not None:
+                player.current_room = player.current_room.w_to
+        else:
+            print("There is nothing that way: Choose a different direction.")
     print(
-        f"{newplayer.name} you have arrived at {newplayer.current_room}. \n please choose a direction\n"
+        f"{player.name}, you are  {player.current_room}\n Which Direction Would You like to go now?"
     )
-    # action == input(f"please choose [l]ook around or [m]ove to new room")
-    # if action == "l":
-    #     pass
-    # if action == "m":
-    #     direction = input("Pick a Direction: [s]outh [n]orth [e]ast [w]est e[x]it")
-    direction = input("Pick a Direction: [s]outh [n]orth [e]ast [w]est e[x]it")
-
+    new_direction = input("Pick a Direction: [s]outh [n]orth [e]ast [w]est e[x]it_game")
