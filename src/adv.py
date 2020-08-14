@@ -1,37 +1,45 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
 room = {
-    'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
-
-    'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
-
-    'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
+    "outside": Room("Outside Cave Entrance", "North of you, the cave mount beckons"),
+    "foyer": Room(
+        "Foyer",
+        """Dim light filters in from the south. Dusty
+passages run north and east.""",
+    ),
+    "overlook": Room(
+        "Grand Overlook",
+        """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
-
-    'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
-
-    'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
+the distance, but there is no way across the chasm.""",
+    ),
+    "narrow": Room(
+        "Narrow Passage",
+        """The narrow passage bends here from west
+to north. The smell of gold permeates the air.""",
+    ),
+    "treasure": Room(
+        "Treasure Chamber",
+        """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+earlier adventurers. The only exit is to the south.""",
+    ),
 }
 
 
 # Link rooms together
 
-room['outside'].n_to = room['foyer']
-room['foyer'].s_to = room['outside']
-room['foyer'].n_to = room['overlook']
-room['foyer'].e_to = room['narrow']
-room['overlook'].s_to = room['foyer']
-room['narrow'].w_to = room['foyer']
-room['narrow'].n_to = room['treasure']
-room['treasure'].s_to = room['narrow']
+room["outside"].n_to = room["foyer"]
+room["foyer"].s_to = room["outside"]
+room["foyer"].n_to = room["overlook"]
+room["foyer"].e_to = room["narrow"]
+room["overlook"].s_to = room["foyer"]
+room["narrow"].w_to = room["foyer"]
+room["narrow"].n_to = room["treasure"]
+room["treasure"].s_to = room["narrow"]
 
 #
 # Main
@@ -49,3 +57,57 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+player = Player("none", room["outside"])
+print("Welcome adventurer. What is your name?")
+player.name = input("Enter Your Name:")
+print(f"{player.name}, you are  {player.current_room}\n Please Choose A Direction")
+
+direction = input("Pick a Direction: [s]outh [n]orth [e]ast [w]est e[x]it_game")
+wrong_way = "There is nothing that way: Choose a different direction."
+while True:
+
+    while not direction == "x":
+
+        if direction == "n":
+            if player.current_room.n_to is not None:
+                player.current_room = player.current_room.n_to
+            else:
+                print(wrong_way, direction)
+        elif direction == "s":
+            if player.current_room.s_to is not None:
+                player.current_room = player.current_room.s_to
+            else:
+                print(wrong_way, direction)
+        elif direction == "e":
+            if player.current_room.e_to is not None:
+                player.current_room = player.current_room.e_to
+            else:
+                print(wrong_way, direction)
+        elif direction == "w":
+            if player.current_room.w_to is not None:
+                player.current_room = player.current_room.w_to
+            else:
+                print(wrong_way, direction)
+        else:
+            print("Please choose from the given commands \n", direction)
+
+        print(
+            f"{player.name}, you are  {player.current_room}\n Which Direction Would You like to go now?"
+        )
+        direction = input(
+            "Pick a Direction: [s]outh [n]orth [e]ast [w]est e[x]it_game: "
+        )
+    if direction == "x":
+        print("See you next time, adventurer!")
+        break
+    # if hasattr(player.current_room, f"{direction}_to"):
+    #     player.current_room = getattr(player.current_room, f"{direction}_to")
+    #     print(player.current_room)
+    #     if player.current_room is not None:
+    #         player.current_room = player.current_room
+    #         print(
+    #             f"{player.name}, you are  {player.current_room}\n Which Direction Would You like to go now?"
+    #         )
+    #     else:
+    #         print("There is nothing that way: Choose a different direction.")
+    # direction = input("Pick a Direction: [s]outh [n]orth [e]ast [w]est e[x]it_game")
