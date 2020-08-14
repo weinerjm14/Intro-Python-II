@@ -63,9 +63,11 @@ player.name = input("Enter Your Name:")
 print(f"{player.name}, you are  {player.current_room}\n Please Choose A Direction")
 
 direction = input("Pick a Direction: [s]outh [n]orth [e]ast [w]est e[x]it_game")
+wrong_way = "There is nothing that way: Choose a different direction."
 while True:
+
     while not direction == "x":
-        wrong_way = print("There is nothing that way: Choose a different direction.")
+
         if direction == "n":
             if player.current_room.n_to is not None:
                 player.current_room = player.current_room.n_to
@@ -87,12 +89,14 @@ while True:
             else:
                 print(wrong_way, direction)
         else:
-            print("Please choose from the given commands n", direction)
+            print("Please choose from the given commands \n", direction)
 
         print(
             f"{player.name}, you are  {player.current_room}\n Which Direction Would You like to go now?"
         )
-        direction = input("Pick a Direction: [s]outh [n]orth [e]ast [w]est e[x]it_game")
+        direction = input(
+            "Pick a Direction: [s]outh [n]orth [e]ast [w]est e[x]it_game: "
+        )
     if direction == "x":
         print("See you next time, adventurer!")
         break
